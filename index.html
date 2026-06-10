@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Azure Data Engineering – Course Brochure</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:Arial,sans-serif;background:#F4F7FB;color:#1A1A2E;line-height:1.65;font-size:15px;}
+
+  /* HEADER */
+  .header{background:linear-gradient(135deg,#0078D4 0%,#004E8C 100%);color:#fff;padding:48px 24px 40px;text-align:center;}
+  .header-badge{display:inline-block;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.35);border-radius:20px;padding:5px 18px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:18px;}
+  .header h1{font-size:clamp(26px,4vw,42px);font-weight:700;margin-bottom:10px;line-height:1.15;}
+  .header p{font-size:16px;opacity:0.88;max-width:560px;margin:0 auto 24px;}
+  .header-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:24px;margin-top:8px;}
+  .meta-item{font-size:13px;opacity:0.85;display:flex;align-items:center;gap:6px;}
+  .meta-dot{width:7px;height:7px;border-radius:50%;background:#50C8F0;flex-shrink:0;}
+
+  /* NAV */
+  nav{background:#005A9E;display:flex;flex-wrap:wrap;justify-content:center;gap:2px;padding:8px 16px;position:sticky;top:0;z-index:99;}
+  nav a{color:#fff;text-decoration:none;padding:6px 16px;border-radius:4px;font-size:13px;font-weight:600;}
+  nav a:hover{background:rgba(255,255,255,0.18);}
+
+  .container{max-width:960px;margin:0 auto;padding:0 20px;}
+
+  /* SECTIONS */
+  section{padding:52px 20px;}
+  section.alt{background:#fff;}
+  .section-label{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#0078D4;margin-bottom:8px;}
+  h2{font-size:26px;font-weight:700;color:#0A1628;margin-bottom:10px;}
+  .section-intro{font-size:15px;color:#4A5568;max-width:680px;margin-bottom:36px;line-height:1.7;}
+
+  /* OVERVIEW CARDS */
+  .overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:0;}
+  .ov-card{background:#F0F7FF;border:1px solid #BDD9F5;border-radius:10px;padding:20px;text-align:center;}
+  .ov-num{font-size:30px;font-weight:700;color:#0078D4;line-height:1;}
+  .ov-label{font-size:12px;color:#4A6080;margin-top:6px;}
+
+  /* SYLLABUS */
+  .syllabus{display:flex;flex-direction:column;gap:0;}
+  .module{border:1px solid #DDE5EE;border-radius:10px;overflow:hidden;margin-bottom:14px;background:#fff;}
+  .module-head{display:flex;align-items:center;gap:14px;padding:16px 20px;background:#F7FAFD;border-bottom:1px solid #DDE5EE;}
+  .mod-num{width:36px;height:36px;border-radius:8px;background:#0078D4;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .mod-title{font-size:15px;font-weight:700;color:#0A1628;}
+  .mod-tag{margin-left:auto;font-size:11px;font-weight:700;padding:3px 10px;border-radius:12px;white-space:nowrap;}
+  .tag-core{background:#D0E8F8;color:#004E8C;}
+  .tag-hands{background:#D4EDDA;color:#155724;}
+  .tag-project{background:#FFF3CD;color:#856404;}
+  .mod-body{padding:16px 20px;}
+  .topic-list{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;}
+  .topic-list li{font-size:13px;color:#4A5568;display:flex;align-items:flex-start;gap:8px;padding:4px 0;}
+  .topic-list li::before{content:'→';color:#0078D4;font-weight:700;flex-shrink:0;}
+  .mod-desc{font-size:13px;color:#4A5568;margin-bottom:12px;line-height:1.6;}
+
+  /* TOOLS */
+  .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;}
+  .tool-card{background:#fff;border:1px solid #DDE5EE;border-radius:10px;padding:18px 16px;text-align:center;}
+  .tool-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:16px;font-weight:700;font-family:monospace;letter-spacing:-0.03em;}
+  .tool-name{font-size:13px;font-weight:700;color:#0A1628;margin-bottom:4px;}
+  .tool-desc{font-size:11px;color:#6B7A90;}
+
+  /* LEARNING OUTCOMES */
+  .outcomes-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;}
+  .outcome{background:#fff;border:1px solid #DDE5EE;border-left:4px solid #0078D4;border-radius:6px;padding:16px 18px;font-size:14px;color:#2D3748;}
+
+  /* Q&A */
+  .qa-list{display:flex;flex-direction:column;gap:14px;}
+  .qa-item{background:#fff;border:1px solid #DDE5EE;border-radius:10px;overflow:hidden;}
+  .qa-q{background:#0078D4;color:#fff;padding:13px 18px;font-size:14px;font-weight:700;line-height:1.4;}
+  .qa-cat{display:inline-block;background:rgba(255,255,255,0.22);font-size:10px;letter-spacing:0.08em;padding:2px 8px;border-radius:10px;margin-bottom:6px;text-transform:uppercase;}
+  .qa-a{padding:14px 18px;font-size:13px;color:#4A5568;line-height:1.65;}
+
+  /* SCHEDULE */
+  .schedule-table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;border:1px solid #DDE5EE;}
+  .schedule-table th{background:#0078D4;color:#fff;padding:12px 16px;font-size:13px;text-align:left;font-weight:700;}
+  .schedule-table td{padding:12px 16px;font-size:13px;color:#2D3748;border-bottom:1px solid #EEF2F7;}
+  .schedule-table tr:last-child td{border-bottom:none;}
+  .schedule-table tr:hover td{background:#F7FAFD;}
+  .week-num{font-family:monospace;font-size:12px;color:#0078D4;font-weight:700;}
+
+  /* TIPS BOX */
+  .tip-box{background:#FFF8E1;border:1px solid #FFD54F;border-left:4px solid #F59E0B;border-radius:8px;padding:18px 20px;margin-top:20px;}
+  .tip-box h4{font-size:14px;font-weight:700;color:#92400E;margin-bottom:8px;}
+  .tip-box ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
+  .tip-box li{font-size:13px;color:#78350F;display:flex;gap:8px;}
+  .tip-box li::before{content:'💡';flex-shrink:0;}
+
+  /* FOOTER */
+  footer{background:#0A1628;color:#8A9BB0;text-align:center;padding:28px 20px;font-size:13px;}
+  footer span{color:#50C8F0;}
+
+  @media(max-width:600px){
+    .header-meta{flex-direction:column;align-items:center;gap:12px;}
+    nav a{font-size:12px;padding:5px 10px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-badge">Course Brochure &amp; Syllabus</div>
+  <h1>Azure Data Engineering</h1>
+  <p>A comprehensive, hands-on program to build, design, and deploy real-world data pipelines on Microsoft Azure.</p>
+  <div class="header-meta">
+    <div class="meta-item"><div class="meta-dot"></div> 14 Core Modules</div>
+    <div class="meta-item"><div class="meta-dot"></div> Hands-On Projects</div>
+    <div class="meta-item"><div class="meta-dot"></div> Interview Preparation Included</div>
+    <div class="meta-item"><div class="meta-dot"></div> Beginner to Advanced</div>
+  </div>
+</div>
+
+<nav>
+  <a href="#overview">Overview</a>
+  <a href="#syllabus">Syllabus</a>
+  <a href="#tools">Tools</a>
+  <a href="#outcomes">Outcomes</a>
+  <a href="#interview">Interview Q&amp;A</a>
+</nav>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="container">
+    <div class="section-label">Course Overview</div>
+    <h2>What You Will Learn</h2>
+    <p class="section-intro">This course takes you from Azure fundamentals all the way through building production-grade data pipelines. You will work with industry-standard tools including Azure Data Factory, Databricks, Synapse Analytics, PySpark, and SQL — gaining skills directly applicable to Data Engineering roles.</p>
+    <div class="overview-grid">
+      <div class="ov-card">
+        <div class="ov-num">14</div>
+        <div class="ov-label">Modules</div>
+      </div>
+      <div class="ov-card">
+        <div class="ov-num">3</div>
+        <div class="ov-label">End-to-End Projects</div>
+      </div>
+      <div class="ov-card">
+        <div class="ov-num">6+</div>
+        <div class="ov-label">Azure Services Covered</div>
+      </div>
+      <div class="ov-card">
+        <div class="ov-num">Q&amp;A</div>
+        <div class="ov-label">Interview Preparation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SYLLABUS -->
+<section class="alt" id="syllabus">
+  <div class="container">
+    <div class="section-label">Syllabus</div>
+    <h2>Module Breakdown</h2>
+    <p class="section-intro">Each module builds on the previous, progressing from cloud fundamentals to end-to-end pipeline engineering and interview readiness.</p>
+    <div class="syllabus">
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">01</div>
+          <div class="mod-title">Azure Fundamentals</div>
+          <span class="mod-tag tag-core">Core</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Understand the Azure cloud ecosystem, core services, resource groups, subscriptions, and how Azure is structured for data workloads.</p>
+          <ul class="topic-list">
+            <li>Cloud computing concepts</li>
+            <li>Azure portal &amp; resource groups</li>
+            <li>Subscriptions &amp; IAM</li>
+            <li>Azure storage accounts</li>
+            <li>Networking basics for data</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">02</div>
+          <div class="mod-title">Azure Data Factory (ADF)</div>
+          <span class="mod-tag tag-hands">Hands-On</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Design and build fully orchestrated data pipelines using Azure's cloud-native ETL/ELT service.</p>
+          <ul class="topic-list">
+            <li>Pipelines &amp; activities</li>
+            <li>Linked services &amp; datasets</li>
+            <li>Copy activity &amp; data flows</li>
+            <li>Triggers &amp; scheduling</li>
+            <li>Monitoring &amp; error handling</li>
+            <li>ELT workflows in ADF</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">03</div>
+          <div class="mod-title">Azure Data Lake (ADLS Gen2)</div>
+          <span class="mod-tag tag-core">Core</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Store and organize massive datasets using Azure Data Lake Storage Gen2 with hierarchical namespace and role-based access.</p>
+          <ul class="topic-list">
+            <li>Hierarchical namespace</li>
+            <li>Bronze / Silver / Gold layers</li>
+            <li>Access Control Lists (ACL)</li>
+            <li>Storage tiers &amp; lifecycle</li>
+            <li>Integration with ADF &amp; Databricks</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">04</div>
+          <div class="mod-title">Azure Databricks</div>
+          <span class="mod-tag tag-hands">Hands-On</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Use Apache Spark on Azure Databricks to perform large-scale distributed data transformations and build Delta Lake tables.</p>
+          <ul class="topic-list">
+            <li>Cluster setup &amp; management</li>
+            <li>Databricks notebooks</li>
+            <li>Delta Lake &amp; ACID transactions</li>
+            <li>Mounting ADLS Gen2</li>
+            <li>Databricks Jobs &amp; workflows</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">05</div>
+          <div class="mod-title">Azure Synapse Analytics</div>
+          <span class="mod-tag tag-hands">Hands-On</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Build enterprise-scale data warehouses and run analytical workloads using Azure Synapse's unified analytics platform.</p>
+          <ul class="topic-list">
+            <li>Dedicated SQL pools</li>
+            <li>Serverless SQL pools</li>
+            <li>Synapse pipelines</li>
+            <li>PolyBase &amp; COPY INTO</li>
+            <li>Integration with Power BI</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">06</div>
+          <div class="mod-title">SQL for Data Engineering</div>
+          <span class="mod-tag tag-core">Core</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Master SQL techniques used specifically in data engineering — beyond simple queries into complex transformations and optimization.</p>
+          <ul class="topic-list">
+            <li>Window functions</li>
+            <li>CTEs &amp; subqueries</li>
+            <li>Stored procedures &amp; views</li>
+            <li>MERGE statements</li>
+            <li>Query optimization &amp; indexing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">07</div>
+          <div class="mod-title">Python for Data Engineering</div>
+          <span class="mod-tag tag-core">Core</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Write Python scripts to automate data workflows, interact with Azure APIs, and prepare data for pipeline processing.</p>
+          <ul class="topic-list">
+            <li>Data manipulation with Pandas</li>
+            <li>File handling (CSV, JSON, Parquet)</li>
+            <li>Azure SDK for Python</li>
+            <li>REST API integration</li>
+            <li>Error handling &amp; logging</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">08</div>
+          <div class="mod-title">PySpark</div>
+          <span class="mod-tag tag-hands">Hands-On</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Process large datasets at scale using PySpark within Azure Databricks — the core transformation engine of modern data pipelines.</p>
+          <ul class="topic-list">
+            <li>RDDs vs DataFrames</li>
+            <li>Transformations &amp; actions</li>
+            <li>Schema enforcement</li>
+            <li>UDFs (User Defined Functions)</li>
+            <li>Partitioning &amp; performance tuning</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">09</div>
+          <div class="mod-title">ETL / ELT Pipeline Design</div>
+          <span class="mod-tag tag-core">Core</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Understand the design principles behind both ETL and ELT approaches and learn when to apply each in real-world scenarios.</p>
+          <ul class="topic-list">
+            <li>ETL vs ELT comparison</li>
+            <li>Pipeline design patterns</li>
+            <li>Data quality &amp; validation</li>
+            <li>Incremental vs full load</li>
+            <li>Error handling strategies</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">10</div>
+          <div class="mod-title">ELT Workflows with ADF</div>
+          <span class="mod-tag tag-hands">Hands-On</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Build complete ELT workflows using ADF as the orchestration layer, triggering Databricks and Synapse jobs in sequence.</p>
+          <ul class="topic-list">
+            <li>ADF + Databricks integration</li>
+            <li>ADF + Synapse integration</li>
+            <li>Parameterized pipelines</li>
+            <li>Metadata-driven pipelines</li>
+            <li>Logging &amp; alerting</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">11</div>
+          <div class="mod-title">Data Warehousing</div>
+          <span class="mod-tag tag-core">Core</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Design data warehouses following industry-standard patterns used in enterprise analytics environments.</p>
+          <ul class="topic-list">
+            <li>Medallion architecture</li>
+            <li>Star &amp; snowflake schema</li>
+            <li>Fact &amp; dimension tables</li>
+            <li>Slowly Changing Dimensions (SCD)</li>
+            <li>Data modeling best practices</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">12</div>
+          <div class="mod-title">Real-Time Data Processing</div>
+          <span class="mod-tag tag-hands">Hands-On</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Build streaming pipelines to process and analyze data in motion using Azure's real-time services.</p>
+          <ul class="topic-list">
+            <li>Azure Event Hubs</li>
+            <li>Azure Stream Analytics</li>
+            <li>Databricks Structured Streaming</li>
+            <li>Windowed aggregations</li>
+            <li>Batch vs streaming trade-offs</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">13</div>
+          <div class="mod-title">End-to-End Projects</div>
+          <span class="mod-tag tag-project">Project</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Apply everything learned by building three complete, production-style data engineering projects from source to serving layer.</p>
+          <ul class="topic-list">
+            <li>Retail Sales Analytics Pipeline</li>
+            <li>Real-Time IoT Event Processing</li>
+            <li>Financial Reporting Data Warehouse</li>
+            <li>Architecture documentation</li>
+            <li>Pipeline testing &amp; validation</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="module">
+        <div class="module-head">
+          <div class="mod-num">14</div>
+          <div class="mod-title">Interview Preparation Q&amp;A</div>
+          <span class="mod-tag tag-project">Career</span>
+        </div>
+        <div class="mod-body">
+          <p class="mod-desc">Prepare for Data Engineering interviews with guided Q&amp;A sessions covering technical concepts, architecture decisions, and real-world problem-solving.</p>
+          <ul class="topic-list">
+            <li>Common DE interview questions</li>
+            <li>Architecture scenario walkthroughs</li>
+            <li>Tool comparison questions</li>
+            <li>SQL &amp; PySpark coding rounds</li>
+            <li>Resume &amp; portfolio guidance</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="container">
+    <div class="section-label">Tools &amp; Technologies</div>
+    <h2>What You Will Work With</h2>
+    <p class="section-intro">All tools used in this course are industry-standard Azure cloud services and open-source technologies used by professional data engineers.</p>
+    <div class="tools-grid">
+      <div class="tool-card">
+        <div class="tool-icon" style="background:#D0E8F8;color:#005A9E;">ADF</div>
+        <div class="tool-name">Azure Data Factory</div>
+        <div class="tool-desc">Pipeline orchestration &amp; ELT</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon" style="background:#E8EAFF;color:#3B3CB5;">DBX</div>
+        <div class="tool-name">Azure Databricks</div>
+        <div class="tool-desc">Distributed data processing</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon" style="background:#FFF0E0;color:#C45000;">SYN</div>
+        <div class="tool-name">Synapse Analytics</div>
+        <div class="tool-desc">Data warehouse &amp; analytics</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon" style="background:#E0F4FF;color:#006FA3;">ADL</div>
+        <div class="tool-name">ADLS Gen2</div>
+        <div class="tool-desc">Cloud data lake storage</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon" style="background:#F0EAFA;color:#6A3CB5;">PSK</div>
+        <div class="tool-name">PySpark</div>
+        <div class="tool-desc">Large-scale transformations</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon" style="background:#E8F8E8;color:#0B6B0B;">SQL</div>
+        <div class="tool-name">SQL</div>
+        <div class="tool-desc">Querying &amp; data modeling</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon" style="background:#FFF8E0;color:#9A6200;">PY</div>
+        <div class="tool-name">Python</div>
+        <div class="tool-desc">Scripting &amp; automation</div>
+      </div>
+      <div class="tool-card">
+        <div class="tool-icon" style="background:#FFE8E8;color:#A32D2D;">EVH</div>
+        <div class="tool-name">Event Hubs</div>
+        <div class="tool-desc">Real-time event streaming</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARNING OUTCOMES -->
+<section class="alt" id="outcomes">
+  <div class="container">
+    <div class="section-label">Learning Outcomes</div>
+    <h2>What You Will Be Able to Do</h2>
+    <p class="section-intro">By the end of this course, students will have the practical skills to take on Data Engineering responsibilities in professional Azure environments.</p>
+    <div class="outcomes-list">
+      <div class="outcome">Design and build end-to-end data pipelines on Azure using ADF, Databricks, and Synapse</div>
+      <div class="outcome">Implement the Medallion architecture with Bronze, Silver, and Gold data layers</div>
+      <div class="outcome">Write efficient PySpark and SQL code for large-scale data transformation</div>
+      <div class="outcome">Develop ELT workflows using Azure Data Factory as the orchestration layer</div>
+      <div class="outcome">Build a cloud data warehouse with proper dimensional modeling and SCD handling</div>
+      <div class="outcome">Process streaming data in real-time using Event Hubs and Structured Streaming</div>
+      <div class="outcome">Work with Delta Lake for ACID-compliant, reliable data storage in Databricks</div>
+      <div class="outcome">Complete three portfolio-ready end-to-end data engineering projects</div>
+      <div class="outcome">Confidently answer technical interview questions for Data Engineering roles</div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Q&A PREP -->
+<section class="alt" id="interview">
+  <div class="container">
+    <div class="section-label">Interview Preparation</div>
+    <h2>Sample Interview Q&amp;A</h2>
+    <p class="section-intro">These are representative questions students should be able to answer confidently after completing this course.</p>
+    <div class="qa-list">
+
+      <div class="qa-item">
+        <div class="qa-q"><span class="qa-cat">Architecture</span><br>What is the Medallion architecture and when would you use it?</div>
+        <div class="qa-a">A layered data organization pattern with Bronze (raw), Silver (cleansed), and Gold (business-ready) zones stored in ADLS Gen2. It is used when multiple teams need to consume data at different refinement levels, or when you need to preserve raw data for reprocessing and auditing.</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q"><span class="qa-cat">ADF vs Databricks</span><br>How does Azure Data Factory differ from Databricks for data processing?</div>
+        <div class="qa-a">ADF is an orchestration and ELT service best suited for low-code data movement and pipeline scheduling. Databricks is a compute engine for complex, large-scale PySpark transformations. In practice, ADF is used to trigger and sequence Databricks notebooks within a larger workflow.</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q"><span class="qa-cat">ETL / ELT</span><br>What is the difference between ETL and ELT, and which is preferred in Azure?</div>
+        <div class="qa-a">ETL transforms data before loading it into the target; ELT loads raw data first and transforms it inside the destination system. Azure architectures generally favour ELT because Synapse and Databricks provide scalable compute, and keeping raw data in ADLS Gen2 allows for full reprocessing when needed.</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q"><span class="qa-cat">Databricks</span><br>What is Delta Lake and why is it preferred over plain Parquet?</div>
+        <div class="qa-a">Delta Lake adds ACID transactions, schema enforcement, time-travel, and MERGE support on top of Parquet files. It ensures data consistency in parallel write scenarios and allows engineers to roll back or reprocess from any historical snapshot when pipeline failures occur.</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q"><span class="qa-cat">Data Warehousing</span><br>How do you implement Slowly Changing Dimensions (SCD Type 2) in Synapse?</div>
+        <div class="qa-a">Add effective_start_date, effective_end_date, and is_current columns to the dimension table. Use a MERGE statement in T-SQL to expire the existing record (update effective_end_date and set is_current = 0) and insert a new record with the updated attributes and is_current = 1 whenever a tracked attribute changes.</div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-q"><span class="qa-cat">Real-Time</span><br>How would you design a real-time data pipeline for IoT sensor events?</div>
+        <div class="qa-a">Ingest events through Azure Event Hubs, process them using Databricks Structured Streaming or Azure Stream Analytics for windowed aggregations and anomaly detection, persist results to ADLS Gen2 or Synapse dedicated pools, and surface live insights via Power BI DirectQuery dashboards.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Azure Data Engineering Course &nbsp;|&nbsp; <span>Course Brochure &amp; Syllabus</span> &nbsp;|&nbsp; For Enrolled Students</p>
+</footer>
+
+</body>
+</html>
